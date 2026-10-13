@@ -1,0 +1,22 @@
+@import "../styles/ui.css";
+
+#root { max-height: 520px; overflow-y: auto; }
+.mn { padding: 12px; display: flex; flex-direction: column; gap: 12px; }
+.mn__list { display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow-y: auto; }
+.mn__item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--mg-border); border-radius: 8px; background: var(--mg-bg); cursor: pointer; text-align: left; width: 100%; }
+.mn__item:hover { background: var(--mg-surface-hover); }
+.mn__info { flex: 1; min-width: 0; }
+.mn__name { font-weight: 700; font-size: 14px; overflow-wrap: anywhere; }
+.mn__count { font-size: 12px; color: var(--mg-text-muted); }
+.mn__tile { width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; flex: none; background: var(--mg-blue-soft); color: var(--mg-blue); }
+.mn__head { display: flex; align-items: center; gap: 8px; }
+.mn__chip { font-weight: 700; }
+.mn__textarea { width: 100%; min-height: 84px; padding: 8px 12px; resize: vertical; border-radius: 6px; border: 1px solid var(--mg-border); background: var(--mg-bg); color: var(--mg-text); font: inherit; }
+.mn__textarea:focus { outline: none; border-color: var(--mg-blue); box-shadow: 0 0 0 1px var(--mg-blue); }
+.mn__notify { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: var(--mg-text-muted); background: var(--mg-surface); border-radius: 8px; padding: 8px 10px; }
+.mn__notify svg { flex: none; margin-top: 1px; }
+.mn__muted { font-size: 13px; color: var(--mg-text-muted); }
+.mn__center { align-items: center; text-align: center; padding: 20px 12px; }
+.mn__done { width: 52px; height: 52px; border-radius: 50%; background: var(--mg-success-soft); color: var(--mg-success); display: flex; align-items: center; justify-content: center; }
+.mn__row { display: flex; gap: 8px; }
+.mn__row .mg-btn { flex: 1; }

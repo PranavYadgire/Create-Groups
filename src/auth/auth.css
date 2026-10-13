@@ -1,0 +1,14 @@
+@import "../styles/ui.css";
+
+.auth-popup-container { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.auth-state-box { align-items: center; text-align: center; padding: 24px 16px; }
+.auth-header { display: flex; align-items: center; gap: 12px; }
+.auth-icon-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--mg-blue-soft); color: var(--mg-blue); display: flex; align-items: center; justify-content: center; }
+.auth-title { font-size: 16px; font-weight: 700; }
+.auth-subtitle { font-size: 13px; color: var(--mg-text-muted); }
+.auth-body-text { font-size: 13px; color: var(--mg-text-muted); line-height: 1.5; }
+.auth-features-list { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+.auth-feature-item { display: flex; align-items: center; gap: 8px; }
+.auth-feature-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mg-blue); flex: none; }
+.auth-success-circle { width: 52px; height: 52px; border-radius: 50%; background: var(--mg-success-soft); color: var(--mg-success); display: flex; align-items: center; justify-content: center; }
+.auth-link-btn { background: none; border: none; color: var(--mg-blue); cursor: pointer; font-size: 13px; text-decoration: underline; align-self: center; }

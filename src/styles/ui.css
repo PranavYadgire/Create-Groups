@@ -1,0 +1,135 @@
+/* Shared design tokens + primitives for all Mention Groups popups. */
+:root {
+  --mg-bg: #ffffff;
+  --mg-surface: #f7f8f9;
+  --mg-surface-hover: #f1f2f4;
+  --mg-border: #dcdfe4;
+  --mg-text: #172b4d;
+  --mg-text-muted: #626f86;
+  --mg-blue: #0c66e4;
+  --mg-blue-hover: #0055cc;
+  --mg-blue-soft: #e9f2ff;
+  --mg-danger: #c9372c;
+  --mg-danger-soft: #ffeceb;
+  --mg-success: #1f845a;
+  --mg-success-soft: #dcfff1;
+  --mg-shadow: 0 8px 16px rgba(9, 30, 66, 0.15), 0 0 1px rgba(9, 30, 66, 0.31);
+  --mg-focus: 0 0 0 2px #fff, 0 0 0 4px #388bff;
+}
+:root[data-theme="dark"] {
+  --mg-bg: #282e33;
+  --mg-surface: #22272b;
+  --mg-surface-hover: #2c333a;
+  --mg-border: #3d474f;
+  --mg-text: #c7d1db;
+  --mg-text-muted: #9fadbc;
+  --mg-blue: #579dff;
+  --mg-blue-hover: #85b8ff;
+  --mg-blue-soft: #1c2b41;
+  --mg-danger: #f87168;
+  --mg-danger-soft: #42221f;
+  --mg-success: #4bce97;
+  --mg-success-soft: #1c3329;
+  --mg-shadow: 0 8px 12px rgba(1, 4, 4, 0.36), 0 0 1px rgba(1, 4, 4, 0.5);
+  --mg-focus: 0 0 0 2px #282e33, 0 0 0 4px #579dff;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--mg-bg); }
+body {
+  color: var(--mg-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; }
+h1, h2, h3, p { margin: 0; }
+:focus-visible { outline: none; box-shadow: var(--mg-focus); }
+
+.mg-spin { animation: mg-spin 0.8s linear infinite; }
+@keyframes mg-spin { to { transform: rotate(360deg); } }
+
+/* ---------- Buttons ---------- */
+.mg-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding: 0 14px; border-radius: 6px; border: 1px solid transparent;
+  font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap;
+  transition: background 0.12s ease;
+}
+.mg-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.mg-btn--primary { background: var(--mg-blue); color: #fff; }
+.mg-btn--primary:hover:not(:disabled) { background: var(--mg-blue-hover); }
+:root[data-theme="dark"] .mg-btn--primary { color: #1d2125; }
+.mg-btn--secondary { background: var(--mg-bg); border-color: var(--mg-border); color: var(--mg-text); }
+.mg-btn--secondary:hover:not(:disabled) { background: var(--mg-surface-hover); }
+.mg-btn--danger { background: var(--mg-danger); color: #fff; }
+:root[data-theme="dark"] .mg-btn--danger { color: #1d2125; }
+.mg-btn--block { width: 100%; height: 40px; }
+.mg-btn--sm { height: 30px; padding: 0 10px; font-size: 13px; }
+
+.mg-icon-btn {
+  width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;
+  border: none; background: transparent; border-radius: 6px; cursor: pointer; color: var(--mg-text-muted);
+}
+.mg-icon-btn:hover { background: var(--mg-surface-hover); color: var(--mg-text); }
+
+/* ---------- Form ---------- */
+.mg-field { display: flex; flex-direction: column; gap: 6px; }
+.mg-label { font-size: 13px; font-weight: 600; color: var(--mg-text); }
+.mg-input-wrap { position: relative; }
+.mg-input {
+  width: 100%; height: 36px; padding: 0 12px; border-radius: 6px;
+  border: 1px solid var(--mg-border); background: var(--mg-bg); color: var(--mg-text); font: inherit;
+}
+.mg-input::placeholder { color: var(--mg-text-muted); }
+.mg-input:hover { background: var(--mg-surface); }
+.mg-input:focus { outline: none; border-color: var(--mg-blue); box-shadow: 0 0 0 1px var(--mg-blue); background: var(--mg-bg); }
+.mg-input--search { padding-left: 34px; }
+.mg-input-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--mg-text-muted); pointer-events: none; }
+.mg-counter { text-align: right; font-size: 12px; color: var(--mg-text-muted); }
+.mg-error { font-size: 13px; color: var(--mg-danger); background: var(--mg-danger-soft); padding: 8px 10px; border-radius: 6px; }
+
+/* ---------- Avatars ---------- */
+.mg-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex: none; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.2px;
+}
+.mg-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mg-avatar--sm { width: 24px; height: 24px; font-size: 10px; }
+.mg-avatar--lg { width: 32px; height: 32px; font-size: 12px; }
+.mg-avatar-stack { display: flex; align-items: center; }
+.mg-avatar-stack .mg-avatar { box-shadow: 0 0 0 2px var(--mg-bg); margin-left: -6px; }
+.mg-avatar-stack .mg-avatar:first-child { margin-left: 0; }
+.mg-avatar--more { background: var(--mg-surface-hover); color: var(--mg-text-muted); }
+
+/* ---------- Group tile (icon badge) ---------- */
+.mg-tile { width: 36px; height: 36px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.mg-tile--blue   { background: #e9f2ff; color: #0c66e4; }
+.mg-tile--red    { background: #ffeceb; color: #c9372c; }
+.mg-tile--green  { background: #dcfff1; color: #1f845a; }
+.mg-tile--yellow { background: #fff7d6; color: #b38600; }
+.mg-tile--purple { background: #f3f0ff; color: #6e5dc6; }
+:root[data-theme="dark"] .mg-tile--blue   { background: #1c2b41; color: #85b8ff; }
+:root[data-theme="dark"] .mg-tile--red    { background: #42221f; color: #fd9891; }
+:root[data-theme="dark"] .mg-tile--green  { background: #1c3329; color: #7ee2b8; }
+:root[data-theme="dark"] .mg-tile--yellow { background: #3d3a1a; color: #f5cd47; }
+:root[data-theme="dark"] .mg-tile--purple { background: #2b2451; color: #b8acf6; }
+
+/* ---------- Toast ---------- */
+.mg-toast {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50;
+  padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  background: var(--mg-text); color: var(--mg-bg); box-shadow: var(--mg-shadow);
+}
+.mg-toast--error { background: var(--mg-danger); color: #fff; }
+
+/* ---------- Scrollbars ---------- */
+* { scrollbar-width: thin; scrollbar-color: rgba(128,128,128,.4) transparent; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(128,128,128,.4); border-radius: 9999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-spin { animation-duration: 2s; }
+}
