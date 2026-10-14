@@ -9,6 +9,7 @@ const ICON = {
   light: `${origin}/icons/icon-dark.svg`,
 };
 
+// Open the group management screen.
 function openGroupsManager(t) {
   return t.popup({
     title: "Mention Groups",
@@ -17,25 +18,35 @@ function openGroupsManager(t) {
   });
 }
 
+// Open the group picker for the current Trello card.
 async function openMentionPicker(t) {
-  if (!(await isAuthorized(t))) {
-    return t.popup({
-      title: "Authorize Mention Groups",
-      url: t.signUrl("./auth.html"),
-      height: 320,
-    });
-  }
+  try {
+    const authorized = await isAuthorized(t);
 
-  return t.popup({
-    title: "Mention a group",
-    url: t.signUrl("./mention.html"),
-    height: 480,
-  });
+    if (!authorized) {
+      return t.popup({
+        title: "Authorize Mention Groups",
+        url: t.signUrl("./auth.html"),
+        height: 320,
+      });
+    }
+
+    return t.popup({
+      title: "Mention a Group",
+      url: t.signUrl("./mention.html"),
+      height: 480,
+    });
+  } catch (error) {
+    console.error("Mention Groups could not open:", error);
+    throw error;
+  }
 }
 
 TrelloPowerUp.initialize({
   "authorization-status": async function (t) {
-    return { authorized: await isAuthorized(t) };
+    return {
+      authorized: await isAuthorized(t),
+    };
   },
 
   "show-authorization": function (t) {
@@ -50,6 +61,7 @@ TrelloPowerUp.initialize({
     return openGroupsManager(t);
   },
 
+  // Board button: create, edit and manage groups.
   "board-buttons": function () {
     return [
       {
@@ -60,30 +72,14 @@ TrelloPowerUp.initialize({
     ];
   },
 
+  // Card button: choose a group and compose a comment.
   "card-buttons": function () {
     return [
       {
-        icon: ICON.light,
+        icon: ICON,
         text: "Mention Group",
-        condition: "always",
         callback: openMentionPicker,
       },
     ];
-  },
-
-  "card-back-section": function (t) {
-    return {
-      title: "Mention Groups",
-      icon: ICON.light,
-      content: {
-        type: "iframe",
-        url: t.signUrl("./mention.html"),
-        height: 400,
-      },
-      action: {
-        text: "Open Mention Groups",
-        callback: openMentionPicker,
-      },
-    };
   },
 });
