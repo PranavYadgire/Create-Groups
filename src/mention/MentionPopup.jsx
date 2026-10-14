@@ -55,10 +55,13 @@ export default function MentionPopup({ t }) {
       const { text, notified: toNotify } = buildCommentText({ group: selected, members: groupMembers, message, selfId: me?.id });
       if (toNotify.length === 0) throw new Error("Nobody to notify: you're the only member of this group.");
       const context = await t.getContext();
-const cardId = context?.card?.id || context?.card;
+const cardId =
+  typeof context?.card === "string"
+    ? context.card
+    : context?.card?.id;
 
-if (!cardId || typeof cardId !== "string") {
-  throw new Error("Please open Mention Group from a Trello card.");
+if (!cardId) {
+  throw new Error("Could not identify the current Trello card.");
 }
       if (t.isMock) {
         // Local preview only: simulate the successful Trello comment so the
