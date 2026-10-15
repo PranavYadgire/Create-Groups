@@ -1,4 +1,4 @@
-```js
+
 /* global TrelloPowerUp */
 import { isAuthorized } from "../lib/auth.js";
 
@@ -71,14 +71,22 @@ TrelloPowerUp.initialize({
     ];
   },
 
-  "card-buttons": function () {
-    return [
-      {
-        icon: ICON,
-        text: "Mention Group",
-        callback: openMentionPicker,
-      },
-    ];
-  },
+ "card-buttons": function () {
+  return [
+    {
+      icon: ICON,
+      text: "Mention Group",
+      condition: "always",
+      callback: openMentionPicker,
+    },
+  ];
+},
 });
 ```
+
+boardbuttons
+cardbacksections
+card boardbuttons
+show settings
+authorization status
+show authentication
