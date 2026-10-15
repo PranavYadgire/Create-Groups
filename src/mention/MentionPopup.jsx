@@ -109,8 +109,12 @@ if (!cardId) {
         <textarea id="mn-msg" className="mn__textarea" maxLength={MAX_MESSAGE} autoFocus placeholder="Write your comment…" value={message} onChange={(e) => setMessage(e.target.value)} />
         {error && <div className="mg-error" role="alert">{error}</div>}
         <div className="mn__row">
-          <button type="button" className="mg-btn mg-btn--primary" onClick={post} disabled={posting || others.length === 0}>
-            {posting ? <SpinnerIcon /> : <AtIcon />} Post comment
+<button
+  type="button"
+  className="mg-btn mg-btn--primary"
+  onClick={post}
+  disabled={posting}
+>            {posting ? <SpinnerIcon /> : <AtIcon />} Post comment
           </button>
         </div>
       </div>
