@@ -1,4 +1,4 @@
-
+```js
 /* global TrelloPowerUp */
 import { isAuthorized } from "../lib/auth.js";
 
@@ -13,7 +13,7 @@ const ICON = {
 function openGroupsManager(t) {
   return t.popup({
     title: "Mention Groups",
-    url: t.signUrl("./groups.html"),
+    url: "./groups.html",
     height: 420,
   });
 }
@@ -26,14 +26,14 @@ async function openMentionPicker(t) {
     if (!authorized) {
       return t.popup({
         title: "Authorize Mention Groups",
-        url: t.signUrl("./auth.html"),
+        url: "./auth.html",
         height: 320,
       });
     }
 
     return t.popup({
       title: "Mention a Group",
-      url: t.signUrl("./mention.html"),
+      url: "./mention.html",
       height: 480,
     });
   } catch (error) {
@@ -52,7 +52,7 @@ TrelloPowerUp.initialize({
   "show-authorization": function (t) {
     return t.popup({
       title: "Authorize Mention Groups",
-      url: t.signUrl("./auth.html"),
+      url: "./auth.html",
       height: 320,
     });
   },
@@ -61,7 +61,6 @@ TrelloPowerUp.initialize({
     return openGroupsManager(t);
   },
 
-  // Board button: create, edit and manage groups.
   "board-buttons": function () {
     return [
       {
@@ -72,7 +71,6 @@ TrelloPowerUp.initialize({
     ];
   },
 
-  // Card button: choose a group and compose a comment.
   "card-buttons": function () {
     return [
       {
@@ -83,3 +81,4 @@ TrelloPowerUp.initialize({
     ];
   },
 });
+```
