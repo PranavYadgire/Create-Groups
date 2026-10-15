@@ -53,7 +53,6 @@ export default function MentionPopup({ t }) {
     try {
       const groupMembers = resolveMembers(selected, membersById);
       const { text, notified: toNotify } = buildCommentText({ group: selected, members: groupMembers, message, selfId: me?.id });
-      if (toNotify.length === 0) throw new Error("Nobody to notify: you're the only member of this group.");
       const context = await t.getContext();
 const cardId =
   typeof context?.card === "string"
